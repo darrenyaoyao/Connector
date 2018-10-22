@@ -17,24 +17,24 @@ class DialogueNode extends Component {
   render() {
     return (
       <Group
-        x={this.props.state.group_x}
-        y={this.props.state.group_y}
+        x={this.props.group_x}
+        y={this.props.group_y}
         draggable={true}
         onDragEnd={this.props.dragEnd}
         onClick={this.props.createEdge}
         onMouseEnter={this.mouseOver}
         onMouseLeave={this.mouseOut}>
         <Circle
-          x={this.props.state.state_x}
-          y={this.props.state.state_y}
-          radius={this.props.state.radius}
-          fill={this.props.state.fill}
+          x={this.props.state_x}
+          y={this.props.state_y}
+          radius={this.props.radius}
+          fill={this.props.fill}
         />
         <Text
-          x={this.props.state.text_x}
-          y={this.props.state.text_y}
-          fontSize={this.props.state.fontSize}
-          text={this.props.state.text}
+          x={this.props.text_x}
+          y={this.props.text_y}
+          fontSize={this.props.fontSize}
+          text={this.props.text}
         />
       </Group>
     )
