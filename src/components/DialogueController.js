@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
-import { Stage, Layer } from 'react-konva';
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import DialogueNode from './DialogueNode.js';
-import DialogueEdge from './DialogueEdge.js';
 
 const styles = theme => ({
   button: {
@@ -11,7 +8,7 @@ const styles = theme => ({
   }
 })
 
-class DialogueManager extends Component {
+class DialogueController extends Component {
   constructor(props) {
     super(props);
     this.createNode = this.createNode.bind(this);
