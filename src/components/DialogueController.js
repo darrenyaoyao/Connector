@@ -11,7 +11,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ToggleButton from '@material-ui/lab/ToggleButton';
-import { graph2text, saveTextToFile } from '../actions/graph2text'
+import { graph2text, saveTextToFile } from '../actions/graph2text';
 
 const pinkTheme = createMuiTheme({
   palette: {
@@ -34,6 +34,10 @@ const lightGreenTheme = createMuiTheme({
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit
+  },
+  header: {
+    position: 'fixed',
+    zIndex: 1
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -93,14 +97,18 @@ class DialogueController extends Component {
   }
 
   changeCreateEdgeMode(edgeMode) {
-    this.setState({
-      createPayload: {
-        mode: 'EDGE',
-        type: edgeMode
-      },
-      title: edgeMode
-    });
-    this.handleClickDialogOpen();
+    if (this.props.createEdgeMode !== 'default') {
+      this.props.setCreateEdgeMode('default');
+    } else {
+      this.setState({
+        createPayload: {
+          mode: 'EDGE',
+          type: edgeMode
+        },
+        title: edgeMode
+      });
+      this.handleClickDialogOpen();
+    }
   }
 
   handleClickDialogOpen = () => {
@@ -144,7 +152,7 @@ class DialogueController extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.header}>
         <MuiThemeProvider theme={pinkTheme}>
           <Button
             color='primary'

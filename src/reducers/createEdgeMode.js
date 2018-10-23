@@ -1,4 +1,4 @@
-const createEdgeMode = (state = false, action) => {
+const createEdgeMode = (state = 'default', action) => {
   switch(action.type) {
     case 'SET_CREATE_EDGE_MODE':
       return action.mode
