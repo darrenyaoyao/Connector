@@ -92,8 +92,8 @@ class DialogueManager extends Component {
     return (
       <div>
         <Stage
-          width={window.innerWidth*2}
-          height={window.innerHeight*2}
+          width={window.innerWidth*3}
+          height={window.innerHeight*3}
           onMouseMove={this.onMouseMove}>
           <Layer>
             {this.props.dialogueEdges.map((edge, index) => (
