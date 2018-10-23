@@ -1,33 +1,14 @@
 import React, { Component } from 'react';
 import { Stage, Layer } from 'react-konva';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
 import DialogueNode from './DialogueNode.js';
 import DialogueEdge from './DialogueEdge.js';
-
-const styles = theme => ({
-  button: {
-    margin: theme.spacing.unit
-  }
-})
 
 class DialogueManager extends Component {
   constructor(props) {
     super(props);
-    this.createNode = this.createNode.bind(this);
     this.dragMove = this.dragMove.bind(this);
-    this.changeCreateEdgeMode = this.changeCreateEdgeMode.bind(this);
     this.createEdge = this.createEdge.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
-  }
-
-  createNode(nodeType) {
-    this.props.addNode(nodeType);
-    this.props.setCreateEdgeMode('default');
-  }
-
-  changeCreateEdgeMode(edgeMode) {
-    this.props.setCreateEdgeMode(edgeMode);
   }
 
   createEdge(index) {
@@ -80,41 +61,6 @@ class DialogueManager extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button
-          color='secondary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.createNode('state')}>
-          create state
-        </Button>
-        <Button
-          color='secondary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.createNode('function')}>
-          create function
-        </Button>
-        <Button
-          color='secondary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.createNode('response')}>
-          create response
-        </Button>
-        <Button
-          color='primary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.changeCreateEdgeMode('intent')}>
-          create intent line
-        </Button>
-        <Button
-          color='primary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.changeCreateEdgeMode('funcOutput')}>
-          create function output line
-        </Button>
         <Stage
           width={window.innerWidth}
           height={window.innerHeight}
@@ -141,4 +87,4 @@ class DialogueManager extends Component {
   }
 }
 
-export default withStyles(styles)(DialogueManager);
+export default DialogueManager;
