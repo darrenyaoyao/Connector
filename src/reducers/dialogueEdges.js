@@ -7,7 +7,7 @@ const dialogueEdges = (state = [], action) => {
         stroke = 'black'
         name = action.edgeName
       } else if (action.edgeType === 'FUNCOUTPUT') {
-        stroke = 'gray'
+        stroke = '#E0E0E0'
         name = action.edgeName
       }
       var newEdge = {

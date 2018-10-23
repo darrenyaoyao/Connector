@@ -2,19 +2,16 @@ const dialogueNodes = (state = [], action) => {
   switch (action.type) {
     case 'ADD_NODE':
       if (action.nodeType === 'STATE') {
-        var color = 'red';
+        var color = '#e91e63';
         var name = action.nodeName;
-        var fontSize = 20;
         var type = "state";
       } else if (action.nodeType === 'FUNCTION') {
-        var color = 'blue';
+        var color = '#03a9f4';
         var name = action.nodeName;
-        var fontSize = 15;
         var type = "function";
       } else if (action.nodeType === 'RESPONSE') {
-        var color = 'green';
+        var color = '#8bc34a';
         var name = action.nodeName;
-        var fontSize = 14;
         var type = 'response';
       }
       var dialogueNode = {
@@ -22,13 +19,15 @@ const dialogueNodes = (state = [], action) => {
         group_y: 50,
         node_x: 0,
         node_y: 0,
-        radius: 50,
+        width: 200,
+        height: 100,
+        cornerRadius: 20,
         fill: color,
         name: name,
-        name_x: -40,
-        name_y: -10,
+        name_x: 20,
+        name_y: 20,
         name_fill: 'white',
-        fontSize: fontSize,
+        fontSize: 20,
         type: type,
         inEdges: [],
         outEdges: []

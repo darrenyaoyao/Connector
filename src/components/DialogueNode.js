@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Group, Circle, Text } from 'react-konva';
+import { Group, Rect, Circle, Text } from 'react-konva';
 
 class DialogueNode extends Component {
   constructor(props) {
@@ -24,15 +24,18 @@ class DialogueNode extends Component {
         onClick={this.props.createEdge}
         onMouseEnter={this.mouseOver}
         onMouseLeave={this.mouseOut}>
-        <Circle
+        <Rect
           x={this.props.node_x}
           y={this.props.node_y}
-          radius={this.props.radius}
+          width={this.props.width}
+          height={this.props.height}
+          cornerRadius={this.props.cornerRadius}
           fill={this.props.fill}
         />
         <Text
           x={this.props.name_x}
           y={this.props.name_y}
+          width={150}
           fill={this.props.name_fill}
           fontSize={this.props.fontSize}
           text={this.props.name}

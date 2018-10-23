@@ -11,15 +11,31 @@ class DialogueManager extends Component {
     this.onMouseMove = this.onMouseMove.bind(this);
   }
 
+  nodeCenterPosition(node) {
+    return {
+      x: Math.floor(node.group_x+node.width/2),
+      y: Math.floor(node.group_y+node.height/2)
+    }
+  }
+
+  nodeLeftPosition(node) {
+    return {
+      x: node.group_x,
+      y: Math.floor(node.group_y+node.height/2)
+    }
+  }
+
   createEdge(index) {
     var currentNodeIndex = index;
     if (this.props.createEdgeMode !== 'default') {
       if (this.props.currentEdgeIndex === -1) {
+        var currentNode = this.props.dialogueNodes[currentNodeIndex]
+        var nodeCenterPosition = this.nodeCenterPosition(currentNode)
         points = [
-          this.props.dialogueNodes[currentNodeIndex].group_x,
-          this.props.dialogueNodes[currentNodeIndex].group_y,
-          this.props.dialogueNodes[currentNodeIndex].group_x,
-          this.props.dialogueNodes[currentNodeIndex].group_y,
+          nodeCenterPosition.x,
+          nodeCenterPosition.y,
+          nodeCenterPosition.x,
+          nodeCenterPosition.y
         ]
         this.props.setCurrentEdgeIndex(this.props.dialogueEdges.length)
         this.props.addOutputEdgeToNode(currentNodeIndex, this.props.dialogueEdges.length)
@@ -27,9 +43,11 @@ class DialogueManager extends Component {
         this.props.addEdge(points, createEdgeType, this.props.createEdgeName)
         this.props.setEdgeInNode(this.props.currentEdgeIndex, currentNodeIndex)
       } else {
+        var currentNode = this.props.dialogueNodes[currentNodeIndex]
+        var nodeLeftPosition = this.nodeLeftPosition(currentNode)
         var points = [
-          this.props.dialogueNodes[currentNodeIndex].group_x,
-          this.props.dialogueNodes[currentNodeIndex].group_y
+          nodeLeftPosition.x,
+          nodeLeftPosition.y
         ]
         this.props.changeEdgeEndPoints(this.props.currentEdgeIndex, points)
         this.props.addInputEdgeToNode(currentNodeIndex, this.props.currentEdgeIndex)
@@ -46,9 +64,19 @@ class DialogueManager extends Component {
     var node = this.props.dialogueNodes[index];
     this.props.changeNodePosition(index, position);
     node.inEdges.forEach((edgeIndex) => {
+      var nodeLeftPosition = this.nodeLeftPosition(node)
+      points = [
+        nodeLeftPosition.x,
+        nodeLeftPosition.y
+      ]
       this.props.changeEdgeEndPoints(edgeIndex, points);
     })
     node.outEdges.forEach((edgeIndex) => {
+      var nodeCenterPosition = this.nodeCenterPosition(node)
+      points = [
+        nodeCenterPosition.x,
+        nodeCenterPosition.y,
+      ]
       this.props.changeEdgeStartPoints(edgeIndex, points);
     })
   }

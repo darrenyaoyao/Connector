@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import pink from '@material-ui/core/colors/pink';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+import lightGreen from '@material-ui/core/colors/lightGreen';
 import { withStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import DialogTitle from '@material-ui/core/DialogTitle';
@@ -8,6 +12,24 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import { graph2text, saveTextToFile } from '../actions/graph2text'
+
+const pinkTheme = createMuiTheme({
+  palette: {
+    primary: pink,
+  },
+});
+
+const lightBlueTheme = createMuiTheme({
+  palette: {
+    primary: lightBlue,
+  },
+});
+
+const lightGreenTheme = createMuiTheme({
+  palette: {
+    primary: lightGreen,
+  },
+});
 
 const styles = theme => ({
   button: {
@@ -115,41 +137,49 @@ class DialogueController extends Component {
     const { classes } = this.props;
     return (
       <div>
-        <Button
-          color='secondary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.createNode('STATE')}>
-          create state
-        </Button>
-        <Button
-          color='secondary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.createNode('FUNCTION')}>
-          create function
-        </Button>
-        <Button
-          color='secondary'
-          variant='contained'
-          className={classes.button}
-          onClick={() => this.createNode('RESPONSE')}>
-          create response
-        </Button>
+        <MuiThemeProvider theme={pinkTheme}>
+          <Button
+            color='primary'
+            variant='contained'
+            className={classes.button}
+            onClick={() => this.createNode('STATE')}>
+            create state
+          </Button>
+        </MuiThemeProvider>
+        <MuiThemeProvider theme={lightBlueTheme}>
+          <Button
+            color='primary'
+            variant='contained'
+            className={classes.button}
+            onClick={() => this.createNode('FUNCTION')}>
+            create function
+          </Button>
+        </MuiThemeProvider>
+        <MuiThemeProvider theme={lightGreenTheme}>
+          <Button
+            color='primary'
+            variant='contained'
+            className={classes.button}
+            onClick={() => this.createNode('RESPONSE')}>
+            create response
+          </Button>
+        </MuiThemeProvider>
         <ToggleButton
           className={classes.button}
+          value={0}
           selected={this.intentSelectedValue()}
           onClick={() => this.changeCreateEdgeMode('INTENT')}>
           create intent line
         </ToggleButton>
         <ToggleButton
           className={classes.button}
+          value={0}
           selected={this.funcOutputSelectedValue()}
           onClick={() => this.changeCreateEdgeMode('FUNCOUTPUT')}>
           create function output line
         </ToggleButton>
         <Button
-          color='primary'
+          color='default'
           variant='contained'
           className={classes.button}
           onClick={this.generateOutput}>
