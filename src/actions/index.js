@@ -1,6 +1,7 @@
-export const addNode = nodeType => ({
+export const addNode = (nodeType, nodeName) => ({
   type: 'ADD_NODE',
-  nodeType
+  nodeType,
+  nodeName
 })
 
 export const changeNodePosition = (index, position) => ({
@@ -21,10 +22,11 @@ export const addInputEdgeToNode = (nodeIndex, edgeIndex) => ({
   edgeIndex
 })
 
-export const addEdge = (points, edgeType) => ({
+export const addEdge = (points, edgeType, edgeName) => ({
   type: 'ADD_EDGE',
   points,
-  edgeType
+  edgeType,
+  edgeName
 })
 
 export const changeEdgeStartPoints = (index, points) => ({
@@ -49,3 +51,7 @@ export const setCreateEdgeMode = mode => ({
   mode
 })
 
+export const setCreateEdgeName = name => ({
+  type: 'SET_CREATE_EDGE_NAME',
+  name
+})

@@ -24,7 +24,7 @@ class DialogueManager extends Component {
         this.props.setCurrentEdgeIndex(this.props.dialogueEdges.length)
         this.props.addOutputEdgeToNode(currentNodeIndex, this.props.dialogueEdges.length)
         var createEdgeType = this.props.createEdgeMode
-        this.props.addEdge(points, createEdgeType)
+        this.props.addEdge(points, createEdgeType, this.props.createEdgeName)
       } else {
         var points = [
           this.props.dialogueNodes[currentNodeIndex].group_x,

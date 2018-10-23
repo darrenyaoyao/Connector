@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
   changeNodePosition: (index, position) => dispatch(changeNodePosition(index, position)),
   addOutputEdgeToNode: (nodeIndex, edgeIndex) => dispatch(addOutputEdgeToNode(nodeIndex, edgeIndex)),
   addInputEdgeToNode: (nodeIndex, edgeIndex) => dispatch(addInputEdgeToNode(nodeIndex, edgeIndex)),
-  addEdge: (points, edgeType) => dispatch(addEdge(points, edgeType)),
+  addEdge: (points, edgeType, edgeName) => dispatch(addEdge(points, edgeType, edgeName)),
   changeEdgeStartPoints: (index, points) => dispatch(changeEdgeStartPoints(index, points)),
   changeEdgeEndPoints: (index, points) => dispatch(changeEdgeEndPoints(index, points)),
   setCurrentEdgeIndex: index => dispatch(setCurrentEdgeIndex(index)),

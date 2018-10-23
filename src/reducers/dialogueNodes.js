@@ -1,19 +1,19 @@
 const dialogueNodes = (state = [], action) => {
   switch (action.type) {
     case 'ADD_NODE':
-      if (action.nodeType === 'state') {
+      if (action.nodeType === 'STATE') {
         var color = 'red';
-        var name = 'new state';
+        var name = action.nodeName;
         var fontSize = 20;
         var type = "state";
-      } else if (action.nodeType === 'function') {
+      } else if (action.nodeType === 'FUNCTION') {
         var color = 'blue';
-        var name = 'new function';
+        var name = action.nodeName;
         var fontSize = 15;
         var type = "function";
-      } else if (action.nodeType === 'response') {
+      } else if (action.nodeType === 'RESPONSE') {
         var color = 'green';
-        var name = 'new response';
+        var name = action.nodeName;
         var fontSize = 14;
         var type = 'response';
       }

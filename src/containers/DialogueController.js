@@ -1,13 +1,15 @@
 import { connect } from 'react-redux'
 import { addNode,
-         setCreateEdgeMode } from '../actions'
+         setCreateEdgeMode,
+         setCreateEdgeName } from '../actions'
 import DialogueController from '../components/DialogueController'
 
 const mapStateToProps = state => (state)
 
 const mapDispatchToProps = dispatch => ({
-  addNode: nodeType => dispatch(addNode(nodeType)),
-  setCreateEdgeMode: modeBool => dispatch(setCreateEdgeMode(modeBool))
+  addNode: (nodeType, nodeName) => dispatch(addNode(nodeType, nodeName)),
+  setCreateEdgeMode: modeBool => dispatch(setCreateEdgeMode(modeBool)),
+  setCreateEdgeName: name => dispatch(setCreateEdgeName(name))
 })
 
 export default connect(
