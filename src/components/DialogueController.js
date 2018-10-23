@@ -6,6 +6,8 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import { graph2text, saveTextToFile } from '../actions/graph2text'
 
 const styles = theme => ({
   button: {
@@ -27,12 +29,33 @@ class DialogueController extends Component {
         type: 'STATE'
       },
       title: 'STATE',
-      name: 'new name'
+      name: 'new name',
+      intentSelected: false,
+      funcOutputSelected: false
     };
     this.createNode = this.createNode.bind(this);
     this.changeCreateEdgeMode = this.changeCreateEdgeMode.bind(this);
     this.handleClickDialogOpen = this.handleClickDialogOpen.bind(this);
     this.handleDialogClose = this.handleDialogClose.bind(this);
+    this.intentSelectedValue = this.intentSelectedValue.bind(this);
+    this.funcOutputSelectedValue = this.funcOutputSelectedValue.bind(this);
+    this.generateOutput = this.generateOutput.bind(this);
+  }
+
+  intentSelectedValue() {
+    if (this.props.createEdgeMode === 'INTENT') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  funcOutputSelectedValue() {
+    if (this.props.createEdgeMode === 'FUNCOUTPUT') {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   createNode(nodeType) {
@@ -83,6 +106,11 @@ class DialogueController extends Component {
     });
   };
 
+  generateOutput() {
+    var output = graph2text(this.props.dialogueNodes, this.props.dialogueEdges);
+    saveTextToFile(output, 'dialogue.config');
+  }
+
   render() {
     const { classes } = this.props;
     return (
@@ -108,19 +136,24 @@ class DialogueController extends Component {
           onClick={() => this.createNode('RESPONSE')}>
           create response
         </Button>
-        <Button
-          color='primary'
-          variant='contained'
+        <ToggleButton
           className={classes.button}
+          selected={this.intentSelectedValue()}
           onClick={() => this.changeCreateEdgeMode('INTENT')}>
           create intent line
-        </Button>
+        </ToggleButton>
+        <ToggleButton
+          className={classes.button}
+          selected={this.funcOutputSelectedValue()}
+          onClick={() => this.changeCreateEdgeMode('FUNCOUTPUT')}>
+          create function output line
+        </ToggleButton>
         <Button
           color='primary'
           variant='contained'
           className={classes.button}
-          onClick={() => this.changeCreateEdgeMode('FUNCOUTPUT')}>
-          create function output line
+          onClick={this.generateOutput}>
+          get output
         </Button>
         <Dialog
           open={this.state.open}

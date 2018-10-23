@@ -17,13 +17,21 @@ const dialogueEdges = (state = [], action) => {
         stroke: stroke,
         strokeWidth: 5,
         type: action.edgeType,
-        inNodes: [],
-        outNodes: []
+        inNode: -1,
+        outNode: -1
       }
       return [
         ...state,
         newEdge
       ]
+    case 'SET_EDGE_IN_NODE':
+      var newDialogueEdges = [...state];
+      newDialogueEdges[action.edgeIndex].inNode = action.nodeIndex;
+      return newDialogueEdges;
+    case 'SET_EDGE_OUT_NODE':
+      var newDialogueEdges = [...state];
+      newDialogueEdges[action.edgeIndex].outNode = action.nodeIndex;
+      return newDialogueEdges;
     case 'CHANGE_EDGE_START_POINTS':
       var newDialogueEdges = [...state];
       newDialogueEdges[action.index].points[0] = action.points[0];

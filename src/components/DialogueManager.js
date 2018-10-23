@@ -25,6 +25,7 @@ class DialogueManager extends Component {
         this.props.addOutputEdgeToNode(currentNodeIndex, this.props.dialogueEdges.length)
         var createEdgeType = this.props.createEdgeMode
         this.props.addEdge(points, createEdgeType, this.props.createEdgeName)
+        this.props.setEdgeInNode(this.props.currentEdgeIndex, currentNodeIndex)
       } else {
         var points = [
           this.props.dialogueNodes[currentNodeIndex].group_x,
@@ -32,7 +33,9 @@ class DialogueManager extends Component {
         ]
         this.props.changeEdgeEndPoints(this.props.currentEdgeIndex, points)
         this.props.addInputEdgeToNode(currentNodeIndex, this.props.currentEdgeIndex)
+        this.props.setEdgeOutNode(this.props.currentEdgeIndex, currentNodeIndex)
         this.props.setCurrentEdgeIndex(-1)
+        this.props.setCreateEdgeMode('default');
       }
     }
   }

@@ -29,6 +29,18 @@ export const addEdge = (points, edgeType, edgeName) => ({
   edgeName
 })
 
+export const setEdgeInNode = (edgeIndex, nodeIndex) => ({
+  type: 'SET_EDGE_IN_NODE',
+  edgeIndex,
+  nodeIndex
+})
+
+export const setEdgeOutNode = (edgeIndex, nodeIndex) => ({
+  type: 'SET_EDGE_OUT_NODE',
+  edgeIndex,
+  nodeIndex
+})
+
 export const changeEdgeStartPoints = (index, points) => ({
   type: 'CHANGE_EDGE_START_POINTS',
   index,
