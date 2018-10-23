@@ -77,6 +77,9 @@ class DialogueManager extends Component {
         <button onClick={() => this.createNode('function')}>
           create function
         </button>
+        <button onClick={() => this.createNode('response')}>
+          create response
+        </button>
         <button onClick={() => this.changeCreateEdgeMode('intent')}>
           create intent line
         </button>

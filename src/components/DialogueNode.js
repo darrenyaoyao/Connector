@@ -33,6 +33,7 @@ class DialogueNode extends Component {
         <Text
           x={this.props.name_x}
           y={this.props.name_y}
+          fill={this.props.name_fill}
           fontSize={this.props.fontSize}
           text={this.props.name}
         />

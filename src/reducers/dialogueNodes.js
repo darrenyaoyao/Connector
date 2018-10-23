@@ -7,14 +7,14 @@ const dialogueNodes = (state = [], action) => {
         var fontSize = 20;
         var type = "state";
       } else if (action.nodeType === 'function') {
-        var color = 'yellow';
+        var color = 'blue';
         var name = 'new function';
         var fontSize = 15;
         var type = "function";
       } else if (action.nodeType === 'response') {
-        var color = 'blue';
+        var color = 'green';
         var name = 'new response';
-        var fontSize = 20;
+        var fontSize = 14;
         var type = 'response';
       }
       var dialogueNode = {
@@ -27,6 +27,7 @@ const dialogueNodes = (state = [], action) => {
         name: name,
         name_x: -40,
         name_y: -10,
+        name_fill: 'white',
         fontSize: fontSize,
         type: type,
         inEdges: [],
