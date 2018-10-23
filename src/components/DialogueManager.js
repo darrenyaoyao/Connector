@@ -98,8 +98,8 @@ class DialogueManager extends Component {
     return (
       <div>
         <Stage
-          width={window.innerWidth*3}
-          height={window.innerHeight*3}
+          width={window.innerWidth*4}
+          height={window.innerHeight*4}
           onMouseMove={this.onMouseMove}
           onClick={this.onStageMouseClick}>
           <Layer>
