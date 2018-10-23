@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Group, Text, Line, Arrow } from 'react-konva';
+import { Group, Text, Arrow } from 'react-konva';
 
 class DialogueEdge extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
+    var offsetY = 0;
+    if (this.props.points[1] < this.props.points[3]) {
+      offsetY = -25;
+    } else {
+      offsetY = 5;
+    }
     return (
-      <Group zIndex={0}>
+      <Group>
         <Arrow
           points={[
             this.props.points[0],
@@ -20,8 +22,8 @@ class DialogueEdge extends Component {
           strokeWidth={this.props.strokeWidth}
         />
         <Text
-          x={(this.props.points[0]+this.props.points[2])/2}
-          y={(this.props.points[1]+this.props.points[3])/2}
+          x={(this.props.points[0]*3+this.props.points[2]*2)/5}
+          y={(this.props.points[1]*3+this.props.points[3]*2)/5+offsetY}
           fontSize={this.props.fontSize}
           text={this.props.name}
         />

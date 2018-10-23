@@ -22,6 +22,10 @@ export const addInputEdgeToNode = (nodeIndex, edgeIndex) => ({
   edgeIndex
 })
 
+export const demo1Nodes = () => ({
+  type: 'DEMO1_NODES'
+})
+
 export const addEdge = (points, edgeType, edgeName) => ({
   type: 'ADD_EDGE',
   points,
@@ -51,6 +55,10 @@ export const changeEdgeEndPoints = (index, points) => ({
   type: 'CHANGE_EDGE_END_POINTS',
   index,
   points
+})
+
+export const demo1Edges = () => ({
+  type: 'DEMO1_EDGES'
 })
 
 export const setCurrentEdgeIndex = index => ({

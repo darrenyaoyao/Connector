@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { Group, Rect, Circle, Text } from 'react-konva';
+import { Group, Rect, Text } from 'react-konva';
 
 class DialogueNode extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   mouseOver() {
     document.body.style.cursor = 'pointer';
   }
@@ -15,6 +11,10 @@ class DialogueNode extends Component {
   }
 
   render() {
+    var fontSize = this.props.fontSize;
+    if (this.props.name.length > 25) {
+      fontSize = 15
+    }
     return (
       <Group
         x={this.props.group_x}
@@ -35,9 +35,12 @@ class DialogueNode extends Component {
         <Text
           x={this.props.name_x}
           y={this.props.name_y}
-          width={150}
+          width={160}
+          height={70}
+          align={'center'}
+          verticalAlign={'middle'}
           fill={this.props.name_fill}
-          fontSize={this.props.fontSize}
+          fontSize={fontSize}
           text={this.props.name}
         />
       </Group>

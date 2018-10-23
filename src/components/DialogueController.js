@@ -62,6 +62,7 @@ class DialogueController extends Component {
     this.intentSelectedValue = this.intentSelectedValue.bind(this);
     this.funcOutputSelectedValue = this.funcOutputSelectedValue.bind(this);
     this.generateOutput = this.generateOutput.bind(this);
+    this.demo1 = this.demo1.bind(this);
   }
 
   intentSelectedValue() {
@@ -129,8 +130,15 @@ class DialogueController extends Component {
   };
 
   generateOutput() {
+    console.log(JSON.stringify(this.props.dialogueNodes))
+    console.log(JSON.stringify(this.props.dialogueEdges))
     var output = graph2text(this.props.dialogueNodes, this.props.dialogueEdges);
     saveTextToFile(output, 'dialogue.config');
+  }
+
+  demo1() {
+    this.props.demo1Edges();
+    this.props.demo1Nodes();
   }
 
   render() {
@@ -184,6 +192,13 @@ class DialogueController extends Component {
           className={classes.button}
           onClick={this.generateOutput}>
           get output
+        </Button>
+        <Button
+          color='default'
+          variant='contained'
+          className={classes.button}
+          onClick={this.demo1}>
+          Demo1
         </Button>
         <Dialog
           open={this.state.open}

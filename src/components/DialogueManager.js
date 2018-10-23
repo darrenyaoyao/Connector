@@ -31,7 +31,7 @@ class DialogueManager extends Component {
       if (this.props.currentEdgeIndex === -1) {
         var currentNode = this.props.dialogueNodes[currentNodeIndex]
         var nodeCenterPosition = this.nodeCenterPosition(currentNode)
-        points = [
+        var points = [
           nodeCenterPosition.x,
           nodeCenterPosition.y,
           nodeCenterPosition.x,
@@ -89,26 +89,25 @@ class DialogueManager extends Component {
   }
 
   render() {
-    const { classes } = this.props;
     return (
       <div>
         <Stage
-          width={window.innerWidth}
-          height={window.innerHeight}
+          width={window.innerWidth*2}
+          height={window.innerHeight*2}
           onMouseMove={this.onMouseMove}>
           <Layer>
+            {this.props.dialogueEdges.map((edge, index) => (
+              <DialogueEdge
+                key={1000+index}
+                {...edge}
+              />
+            ))}
             {this.props.dialogueNodes.map((node, index) => (
               <DialogueNode
                 key={index}
                 {...node}
                 dragMove={(e) => this.dragMove(index, e)}
                 createEdge={(e) => this.createEdge(index)}
-              />
-            ))}
-            {this.props.dialogueEdges.map((edge, index) => (
-              <DialogueEdge
-                key={1000+index}
-                {...edge}
               />
             ))}
           </Layer>
