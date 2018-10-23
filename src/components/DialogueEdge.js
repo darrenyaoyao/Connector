@@ -8,17 +8,24 @@ class DialogueEdge extends Component {
 
   render() {
     return (
-      <Arrow
-        zIndex={0}
-        points={[
-          this.props.points[0],
-          this.props.points[1],
-          this.props.points[2],
-          this.props.points[3]
-        ]}
-        stroke={this.props.stroke}
-        strokeWidth={this.props.strokeWidth}
-      />
+      <Group zIndex={0}>
+        <Arrow
+          points={[
+            this.props.points[0],
+            this.props.points[1],
+            this.props.points[2],
+            this.props.points[3]
+          ]}
+          stroke={this.props.stroke}
+          strokeWidth={this.props.strokeWidth}
+        />
+        <Text
+          x={(this.props.points[0]+this.props.points[2])/2}
+          y={(this.props.points[1]+this.props.points[3])/2}
+          fontSize={this.props.fontSize}
+          text={this.props.name}
+        />
+      </Group>
     )
   }
 }

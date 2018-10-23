@@ -25,8 +25,8 @@ class DialogueNode extends Component {
         onMouseEnter={this.mouseOver}
         onMouseLeave={this.mouseOut}>
         <Circle
-          x={this.props.state_x}
-          y={this.props.state_y}
+          x={this.props.node_x}
+          y={this.props.node_y}
           radius={this.props.radius}
           fill={this.props.fill}
         />

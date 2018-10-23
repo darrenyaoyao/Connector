@@ -20,8 +20,8 @@ const dialogueNodes = (state = [], action) => {
       var dialogueNode = {
         group_x: 50,
         group_y: 50,
-        state_x: 0,
-        state_y: 0,
+        node_x: 0,
+        node_y: 0,
         radius: 50,
         fill: color,
         name: name,

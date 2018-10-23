@@ -1,9 +1,20 @@
 const dialogueEdges = (state = [], action) => {
   switch(action.type) {
     case 'ADD_EDGE':
+      var stroke = 'black'
+      var name = 'new intent'
+      if (action.edgeType === 'intent') {
+        stroke = 'black'
+        name = 'new intent'
+      } else if (action.edgeType === 'funcOutput') {
+        stroke = 'gray'
+        name = 'new function output'
+      }
       var newEdge = {
         points: action.points,
-        stroke: 'black',
+        name: name,
+        fontSize: 15,
+        stroke: stroke,
         strokeWidth: 5,
         type: action.edgeType,
         inNodes: [],

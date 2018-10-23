@@ -21,9 +21,10 @@ export const addInputEdgeToNode = (nodeIndex, edgeIndex) => ({
   edgeIndex
 })
 
-export const addEdge = points => ({
+export const addEdge = (points, edgeType) => ({
   type: 'ADD_EDGE',
-  points
+  points,
+  edgeType
 })
 
 export const changeEdgeStartPoints = (index, points) => ({
@@ -43,8 +44,8 @@ export const setCurrentEdgeIndex = index => ({
   index
 })
 
-export const setCreateEdgeMode = modeBool => ({
+export const setCreateEdgeMode = mode => ({
   type: 'SET_CREATE_EDGE_MODE',
-  modeBool
+  mode
 })
 

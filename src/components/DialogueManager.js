@@ -13,18 +13,18 @@ class DialogueManager extends Component {
     this.onMouseMove = this.onMouseMove.bind(this);
   }
 
-  createNode(mode) {
-    this.props.addNode(mode);
-    this.props.setCreateEdgeMode(false);
+  createNode(nodeType) {
+    this.props.addNode(nodeType);
+    this.props.setCreateEdgeMode('default');
   }
 
-  changeCreateEdgeMode() {
-    this.props.setCreateEdgeMode(true);
+  changeCreateEdgeMode(edgeMode) {
+    this.props.setCreateEdgeMode(edgeMode);
   }
 
   createEdge(index) {
     var currentNodeIndex = index;
-    if (this.props.createEdgeMode === true) {
+    if (this.props.createEdgeMode !== 'default') {
       if (this.props.currentEdgeIndex === -1) {
         points = [
           this.props.dialogueNodes[currentNodeIndex].group_x,
@@ -34,7 +34,8 @@ class DialogueManager extends Component {
         ]
         this.props.setCurrentEdgeIndex(this.props.dialogueEdges.length)
         this.props.addOutputEdgeToNode(currentNodeIndex, this.props.dialogueEdges.length)
-        this.props.addEdge(points)
+        var createEdgeType = this.props.createEdgeMode
+        this.props.addEdge(points, createEdgeType)
       } else {
         var points = [
           this.props.dialogueNodes[currentNodeIndex].group_x,
@@ -61,7 +62,7 @@ class DialogueManager extends Component {
   }
 
   onMouseMove(e) {
-    if (this.props.createEdgeMode === true && this.props.currentEdgeIndex !== -1) {
+    if (this.props.createEdgeMode !== 'default' && this.props.currentEdgeIndex !== -1) {
       var points = [e.evt.offsetX, e.evt.offsetY]
       this.props.changeEdgeEndPoints(this.props.currentEdgeIndex, points)
     }
@@ -76,8 +77,11 @@ class DialogueManager extends Component {
         <button onClick={() => this.createNode('function')}>
           create function
         </button>
-        <button onClick={this.changeCreateEdgeMode}>
+        <button onClick={() => this.changeCreateEdgeMode('intent')}>
           create intent line
+        </button>
+        <button onClick={() => this.changeCreateEdgeMode('funcOutput')}>
+          create function output line
         </button>
         <Stage
           width={window.innerWidth}
