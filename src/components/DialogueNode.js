@@ -20,7 +20,7 @@ class DialogueNode extends Component {
         x={this.props.group_x}
         y={this.props.group_y}
         draggable={true}
-        onDragEnd={this.props.dragEnd}
+        onDragMove={this.props.dragMove}
         onClick={this.props.createEdge}
         onMouseEnter={this.mouseOver}
         onMouseLeave={this.mouseOut}>
@@ -31,10 +31,10 @@ class DialogueNode extends Component {
           fill={this.props.fill}
         />
         <Text
-          x={this.props.text_x}
-          y={this.props.text_y}
+          x={this.props.name_x}
+          y={this.props.name_y}
           fontSize={this.props.fontSize}
-          text={this.props.text}
+          text={this.props.name}
         />
       </Group>
     )

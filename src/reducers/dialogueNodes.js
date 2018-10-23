@@ -3,10 +3,19 @@ const dialogueNodes = (state = [], action) => {
     case 'ADD_NODE':
       if (action.nodeType === 'state') {
         var color = 'red';
-        var text = 'new state'
-      } else if (action.nodeType === 'function'){
-        var color = 'yellow'
-        var text = 'new function'
+        var name = 'new state';
+        var fontSize = 20;
+        var type = "state";
+      } else if (action.nodeType === 'function') {
+        var color = 'yellow';
+        var name = 'new function';
+        var fontSize = 15;
+        var type = "function";
+      } else if (action.nodeType === 'response') {
+        var color = 'blue';
+        var name = 'new response';
+        var fontSize = 20;
+        var type = 'response';
       }
       var dialogueNode = {
         group_x: 50,
@@ -15,10 +24,13 @@ const dialogueNodes = (state = [], action) => {
         state_y: 0,
         radius: 50,
         fill: color,
-        text: text,
-        text_x: -40,
-        text_y: -10,
-        fontSize: 20
+        name: name,
+        name_x: -40,
+        name_y: -10,
+        fontSize: fontSize,
+        type: type,
+        inEdges: [],
+        outEdges: []
       };
       return [
         ...state,
@@ -29,8 +41,16 @@ const dialogueNodes = (state = [], action) => {
       newDialogueNodes[action.index].group_x = action.position.x;
       newDialogueNodes[action.index].group_y = action.position.y;
       return newDialogueNodes;
+    case 'ADD_OUTPUT_EDGE_TO_NODE':
+      var newDialogueNodes = [...state];
+      newDialogueNodes[action.nodeIndex].outEdges.push(action.edgeIndex);
+      return newDialogueNodes;
+    case 'ADD_INPUT_EDGE_TO_NODE':
+      var newDialogueNodes = [...state];
+      newDialogueNodes[action.nodeIndex].inEdges.push(action.edgeIndex);
+      return newDialogueNodes;
     default:
-      return state
+      return state;
   }
 }
 

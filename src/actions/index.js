@@ -9,8 +9,26 @@ export const changeNodePosition = (index, position) => ({
   position
 })
 
+export const addOutputEdgeToNode = (nodeIndex, edgeIndex) => ({
+  type: 'ADD_OUTPUT_EDGE_TO_NODE',
+  nodeIndex,
+  edgeIndex
+})
+
+export const addInputEdgeToNode = (nodeIndex, edgeIndex) => ({
+  type: 'ADD_INPUT_EDGE_TO_NODE',
+  nodeIndex,
+  edgeIndex
+})
+
 export const addEdge = points => ({
   type: 'ADD_EDGE',
+  points
+})
+
+export const changeEdgeStartPoints = (index, points) => ({
+  type: 'CHANGE_EDGE_START_POINTS',
+  index,
   points
 })
 

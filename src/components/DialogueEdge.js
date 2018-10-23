@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Group, Text, Line } from 'react-konva';
+import { Group, Text, Line, Arrow } from 'react-konva';
 
 class DialogueEdge extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class DialogueEdge extends Component {
 
   render() {
     return (
-      <Line
+      <Arrow
         zIndex={0}
         points={[
           this.props.points[0],

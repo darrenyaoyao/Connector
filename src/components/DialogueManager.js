@@ -7,7 +7,7 @@ class DialogueManager extends Component {
   constructor(props) {
     super(props);
     this.createNode = this.createNode.bind(this);
-    this.dragEnd = this.dragEnd.bind(this);
+    this.dragMove = this.dragMove.bind(this);
     this.changeCreateEdgeMode = this.changeCreateEdgeMode.bind(this);
     this.createEdge = this.createEdge.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
@@ -33,6 +33,7 @@ class DialogueManager extends Component {
           this.props.dialogueNodes[currentNodeIndex].group_y,
         ]
         this.props.setCurrentEdgeIndex(this.props.dialogueEdges.length)
+        this.props.addOutputEdgeToNode(currentNodeIndex, this.props.dialogueEdges.length)
         this.props.addEdge(points)
       } else {
         var points = [
@@ -40,14 +41,23 @@ class DialogueManager extends Component {
           this.props.dialogueNodes[currentNodeIndex].group_y
         ]
         this.props.changeEdgeEndPoints(this.props.currentEdgeIndex, points)
+        this.props.addInputEdgeToNode(currentNodeIndex, this.props.currentEdgeIndex)
         this.props.setCurrentEdgeIndex(-1)
       }
     }
   }
 
-  dragEnd(index, e) {
+  dragMove(index, e) {
     var position = e.currentTarget.getPosition();
-    this.props.changeNodePosition(index, position)
+    var points = [position.x, position.y]
+    var node = this.props.dialogueNodes[index];
+    this.props.changeNodePosition(index, position);
+    node.inEdges.forEach((edgeIndex) => {
+      this.props.changeEdgeEndPoints(edgeIndex, points);
+    })
+    node.outEdges.forEach((edgeIndex) => {
+      this.props.changeEdgeStartPoints(edgeIndex, points);
+    })
   }
 
   onMouseMove(e) {
@@ -78,7 +88,7 @@ class DialogueManager extends Component {
               <DialogueNode
                 key={index}
                 {...node}
-                dragEnd={(e) => this.dragEnd(index, e)}
+                dragMove={(e) => this.dragMove(index, e)}
                 createEdge={(e) => this.createEdge(index)}
               />
             ))}
