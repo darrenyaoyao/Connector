@@ -1,4 +1,4 @@
-const demo1JSON = '';
+const demo1JSON = '[{"points":[238,328,559,326],"name":"I want to listen songs","fontSize":20,"stroke":"black","strokeWidth":5,"type":"INTENT","inNode":0,"outNode":1},{"points":[659,326,877,142],"name":"","fontSize":20,"stroke":"#E0E0E0","strokeWidth":5,"type":"FUNCOUTPUT","inNode":1,"outNode":2},{"points":[659,326,1152,324],"name":"I want to listen the song: Perfect","fontSize":20,"stroke":"black","strokeWidth":5,"type":"INTENT","inNode":1,"outNode":3},{"points":[1252,324,1423,319],"name":"","fontSize":20,"stroke":"#E0E0E0","strokeWidth":5,"type":"FUNCOUTPUT","inNode":3,"outNode":4},{"points":[1523,319,1727,111],"name":"yes","fontSize":20,"stroke":"#E0E0E0","strokeWidth":5,"type":"FUNCOUTPUT","inNode":4,"outNode":5},{"points":[1523,319,1739,516],"name":"no","fontSize":20,"stroke":"#E0E0E0","strokeWidth":5,"type":"FUNCOUTPUT","inNode":4,"outNode":6}]';
 
 const dialogueEdges = (state = [], action) => {
   switch(action.type) {
