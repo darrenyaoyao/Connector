@@ -9,17 +9,14 @@ class DialogueEdge extends Component {
     } else {
       offsetY = 5;
     }
+    var points = [...this.props.points]
     return (
       <Group>
         <Arrow
-          points={[
-            this.props.points[0],
-            this.props.points[1],
-            this.props.points[2],
-            this.props.points[3]
-          ]}
+          points={points}
           stroke={this.props.stroke}
           strokeWidth={this.props.strokeWidth}
+          tension={0}
         />
         <Text
           x={(this.props.points[0]*3+this.props.points[2]*2)/5}

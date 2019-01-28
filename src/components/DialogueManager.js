@@ -9,6 +9,7 @@ class DialogueManager extends Component {
     this.dragMove = this.dragMove.bind(this);
     this.createEdge = this.createEdge.bind(this);
     this.onMouseMove = this.onMouseMove.bind(this);
+    this.onStageMouseClick = this.onStageMouseClick.bind(this);
   }
 
   nodeCenterPosition(node) {
@@ -34,8 +35,6 @@ class DialogueManager extends Component {
         var points = [
           nodeCenterPosition.x,
           nodeCenterPosition.y,
-          nodeCenterPosition.x,
-          nodeCenterPosition.y
         ]
         this.props.setCurrentEdgeIndex(this.props.dialogueEdges.length)
         this.props.addOutputEdgeToNode(currentNodeIndex, this.props.dialogueEdges.length)
@@ -88,13 +87,21 @@ class DialogueManager extends Component {
     }
   }
 
+  onStageMouseClick(e) {
+    if (this.props.createEdgeMode !== 'default' && this.props.currentEdgeIndex !== -1) {
+      var points = [e.evt.offsetX, e.evt.offsetY]
+      this.props.addEdgePoints(this.props.currentEdgeIndex, points)
+    }
+  }
+
   render() {
     return (
       <div>
         <Stage
-          width={window.innerWidth*3}
-          height={window.innerHeight*3}
-          onMouseMove={this.onMouseMove}>
+          width={window.innerWidth*4}
+          height={window.innerHeight*4}
+          onMouseMove={this.onMouseMove}
+          onClick={this.onStageMouseClick}>
           <Layer>
             {this.props.dialogueEdges.map((edge, index) => (
               <DialogueEdge

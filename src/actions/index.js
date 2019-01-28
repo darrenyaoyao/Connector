@@ -45,6 +45,12 @@ export const setEdgeOutNode = (edgeIndex, nodeIndex) => ({
   nodeIndex
 })
 
+export const addEdgePoints = (index, points) => ({
+  type: 'ADD_EDGE_POINTS',
+  index,
+  points
+})
+
 export const changeEdgeStartPoints = (index, points) => ({
   type: 'CHANGE_EDGE_START_POINTS',
   index,
